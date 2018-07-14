@@ -1,0 +1,33 @@
+
+.imgBox {
+	display: inline-block;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border : 5px solid white;
+	min-width: 100px;
+}
+
+.imgBox:hover {
+	cursor: pointer;
+}
+
+
+.imgBox h2{
+	text-align: center;
+	margin: 0;
+}
+
+#nxt {
+	margin-top: 20px;
+	border: 2px dotted white;
+	padding: 20px;
+	display: inline-block;
+}
+
+input[type=submit] {
+	font-size: 24px;
+	font-family: verdana;
+	padding: 3px;
+}
+link {
+	display: block;
+}

@@ -1,0 +1,47 @@
+header button.active {
+	border-bottom: 6px solid #616161;
+	opacity: 1;
+}
+header button {
+	opacity: 0.3;
+}
+
+
+#mstkBox{
+	opacity: 0;
+	transition: opacity 2s;
+}
+#mstkBox.fade {
+	opacity: 1;
+}
+#nomenBox button:disabled {
+	opacity: 0.9;
+	cursor: default;
+  -webkit-transition: opacity 1s; /* Safari */
+    transition: opacity 1s;
+}
+
+
+/* The element to apply the animation to */
+#nomenBox button:disabled.ld-fade-out {
+    opacity: 0;
+}
+#nomenBox button:disabled.ld-fade-in {
+    opacity: 1;
+}  
+
+.ld-fade-in {
+    opacity: 1;
+}  
+
+#back {
+  height: 0;
+  -webkit-transition: height 1s; /* Safari */
+    transition: height 1s;
+  overflow: hidden;
+}
+
+.show {
+  height: 75px !important;
+}
+
