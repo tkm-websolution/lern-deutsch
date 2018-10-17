@@ -1,4 +1,3 @@
-
 var ArtChallenge = {
 	derDieDas : document.getElementById("btnBox").getElementsByTagName("button"),
 	mistake : 0,
@@ -98,20 +97,53 @@ var ArtChallenge = {
 			// Array.prototype.forEach.call(ArtChallenge.nomenBtns, function(el){
 			// 	el.remove();
 			// });
-			var btnDiv = document.getElementById("nomenBox");
 			// btnDiv.innerHTML = '';
 			btnsArr.forEach(function(el){
 				el.classList.add("ld-fade-in");
 				// console.log("btnsArr el: " + el);
-				btnDiv.appendChild(el);
+				// el.disabeld = true;
+			
+				if(el.dataset.genus == 1){
+					document.getElementById("das").appendChild(el);
+				}
+				if(el.dataset.genus == 2){
+					document.getElementById("der").appendChild(el);
+				}
+				if(el.dataset.genus == 3){
+					document.getElementById("die").appendChild(el);
+				}
+
+				el.style.opacity = 1;
+				el.style.cursor = 'default';
+
 				// this.bind(ArtChallenge, el);
 				// console.log("this: " + this).bind(ArtChallenge);
+			});
+			var spanBox = document.getElementById("spanBox");
+			var span = spanBox.getElementsByTagName("span");
+			Array.prototype.forEach.call(span, function(el){
+				el.style.display = "block";
+				el.style.marginTop = '8px';
+				Array.prototype.forEach.call(el.children, function(el){
+					el.removeAttribute("disabled");
+					el.style.display = "inline-block";
+					el.classList.remove("w3-hide");
+				});
+			});
+			var btns = document.getElementById("btnBox").getElementsByTagName("button");
+			Array.prototype.forEach.call( btns, function(el){
+				el.classList.add("w3-hide");
 			});
 			// var appBtns = document.getElementById("nomenBox").getElementsByTagName("button");
 			// Array.prototype.forEach.call(appBtns, function(el){
 			// 	el.classList.add("ld-fade-in");
 			// });
+			document.getElementById("nomenBox").classList.remove("w3-padding-64");
 			document.getElementById("back").classList.add("show");
+			var words = document.getElementById("spanBox").getElementsByClassName("words");
+			Array.prototype.forEach.call(words, function(el){
+				el.disabled = true;
+			});
 		},1000);
 
 		Array.prototype.forEach.call(ArtChallenge.derDieDas, function(el){
@@ -122,15 +154,11 @@ var ArtChallenge = {
 	}
 }
 
-
 // var nomenBtns = document.getElementById("nomenBox").getElementsByTagName("button");
 Array.prototype.forEach.call(ArtChallenge.nomenBtns, function(el){
 	el.addEventListener("click", ArtChallenge.checkGenus.bind(ArtChallenge, el));
 })
-// for ( var i = 0; i < ArtChallenge.derDieDas.length; i++){
-// 	console.log("hi");
-// 	ArtChallenge.derDieDas[i].addEventListener("click",activate);
-// }
+
 Array.prototype.forEach.call(ArtChallenge.derDieDas, function(el){
 	el.addEventListener("click",ArtChallenge.activate.bind(ArtChallenge, el));
 });

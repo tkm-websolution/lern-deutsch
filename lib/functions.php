@@ -3,48 +3,21 @@ define("IMGDIR", "img/");
 
 function retImgDir($fieldname)
 {
-	$dir = IMGDIR . (strtolower($fieldname)) . "/";
+	$dir = IMGDIR . (utf8_encode(strtolower($fieldname))) . "/";
 	return $dir;
 }
 
-function connect(){
-		
-		$config = ["DB_USERNAME" => "root", "DB_PASSWORD" => "ingia", "DB_NAME" => "lernDeutsch"];
 
-	try {
-		$conn = new PDO('mysql:host=localhost;dbname=' . 
-						$config['DB_NAME'],
-						$config['DB_USERNAME'],
-						$config['DB_PASSWORD']);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		return $conn;
-
-	} catch (Exception $e) {
-		die("Could not connect.");
-	}
-}
-
-function queryDB($stmt, $conn)
-{
-		
-		// return $stmt;
-
-	$statement = $conn->prepare($stmt);
-
-	$statement->execute();
-
-
-	
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
-	
-}
 
 function insertDB($stmt, $conn)
 {
 	$statement = $conn->prepare($stmt);
 	$statement->execute();
 	
+}
+function return_shuffled_arr($arr){
+	shuffle($arr);
+	return $arr;
 }
 
 
@@ -129,9 +102,50 @@ function get_Mistake_mssg($arr, $conn){
 
 
 function create_inputs($arr, $input_name){
-	$inputs = '';
-	 foreach ($arr as $key => $value) {
-		$inputs .= "<input type='hidden' name='{$input_name}[{$key}]' value='{$value}'>";
-	 }
-	return $inputs;
+	if(empty($arr)){
+		return;
+	}else{
+		$inputs = '';
+		foreach ($arr as $key => $value) {
+			$inputs .= "<input type='hidden' name='{$input_name}[{$key}]' value='{$value}'>";
+		}
+		return $inputs;
+	}
+	
+}
+
+
+function reduce_ids($ids, $usedImgIDArr = []){
+
+	// unset all previous guessed items in $assocArr
+	if(!empty($usedImgIDArr)){
+		$flippped_ids = array_flip($ids);
+		foreach ($usedImgIDArr as $value) {
+		unset($flippped_ids[$value]);
+		}
+		$reduced_ids = [];
+		foreach ($flippped_ids as $key => $value) {
+			array_push($reduced_ids, $key);
+		}
+		return $reduced_ids;
+	}else{
+		return $ids;
+	}
+	
+	
+}
+
+function get_three_more($ids, $arr){
+	while(1){
+		shuffle($ids);
+		$randNum = mt_rand(0, count($ids) -1);
+		if(!in_array($ids[$randNum], $arr)){
+			array_push($arr, $ids[$randNum]);
+		}
+		if((count($arr) > 3)){
+			break;
+		}
+	}
+	shuffle($arr);
+	return $arr;
 }

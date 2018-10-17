@@ -30,6 +30,9 @@ header button {
     opacity: 1;
 }  
 
+#nomenBox span {
+  display: block;
+}
 .ld-fade-in {
     opacity: 1;
 }  

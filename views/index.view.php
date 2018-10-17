@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+	 <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
@@ -40,6 +41,21 @@
 					</form> 
 					
 				</section>
+				<section id="artikel" class="">
+					<div class="w3-panel w3-margin-top w3-sand  w3-opacity w3-xlarge">
+						<p><strong>Leben in Deutschland</strong></p>
+					</div>
+					<form action="artikel.php" method="POST">
+						<?php foreach ($okurs as $value): ?>
+							<button class="okurs button" style="vertical-align:middle; width: auto;" type="submit" name="id" value="<?=$value["id"] ?>">
+								<span>
+								<?=$value["topic"] ?>
+								</span>
+							</button>
+						<?php endforeach; ?>
+					</form> 
+					
+				</section>
 				<footer>
 					<div class="w3-panel  w3-center w3-xlarge w3-opacity">
 						<p><b>tkm-websolution.de 2018</b></p>
@@ -50,7 +66,7 @@
 		</div>
 		
 	</div>
-	<div class="w3-container">
+	<!-- <div class="w3-container">
 		<div class="w3-row-padding">
 			<div class="w3-panel">
 				<button type="button" id="dstrSssn" class="w3-button w3-brown w3-xlarge w3-padding-large">destroy session</button>
@@ -58,7 +74,9 @@
 			</div>
 			<div id="ajaxBox"></div>
 		</div>
-	</div>
-	<script src="js/dstrsssn.js"></script>
+	</div> -->
+	<!-- <button type="button" id="dstrSssn">destroy session</button>
+	<div id="ajaxBox"></div>
+	<script src="js/dstrsssn.js"></script> -->
 </body>
 </html>

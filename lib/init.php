@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include 'lib/db-connect.php';
 include 'lib/functions.php';
 $conn = connect();
 
@@ -17,11 +18,6 @@ if(isset($_GET["cat"])){
 		array_push($_SESSION["artikel"]["fieldID"], $fieldID);
 }
 
-if(isset($_POST["dir_name"]))
-{
-	$path = "img/" . (strtolower($dir_name));
-	if(!mkdir($path)) echo "<br>Directory could not be created!<br>";
-	insertDB("insert lernfield (fieldname) values ( '$dir_name')", $conn);
-}
+
 
  ?>
