@@ -1,6 +1,5 @@
 <?php 
 $assocArr = [
-	11 => "Stift",
 	17 => "Schuh",
 	8 => "Auto",
 	5 => "Hut",
